@@ -1,0 +1,8 @@
+{
+  "name": "openclerk/currencies",
+  "autoload": {
+    "psr-4": {
+      "Openclerk\\Currencies\\": "src"
+    }
+  }
+}
