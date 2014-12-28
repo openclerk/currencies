@@ -28,4 +28,17 @@ abstract class FiatCurrency implements Currency, CurrencyInformation {
     return false;
   }
 
+  public function getCurrency() {
+    return this;
+  }
+
+  /**
+   * Get the currency code visible to users, which can be of any length
+   * and does not need to be unique (but should be). Often just the uppercase
+   * of {@link #getCode()}.
+   */
+  public function getAbbr() {
+    return strtoupper($this->getCode());
+  }
+
 }

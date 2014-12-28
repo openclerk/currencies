@@ -31,15 +31,15 @@ interface AddressableCurrency extends Currency {
   public function getExplorerName();
 
   /**
-   * @return the explorer image relative path, or {@code null} if there is none
+   * @return a public URL for the explorer, or {@code null} if there is none
    * @see #hasExplorer()
    */
-  public function getExplorerImage();
+  public function getExplorerURL();
 
   /**
    * @return a public URL for exploring the given account, or {@code null}
    * if there is none
    */
-  public function getExplorerURL($id);
+  public function getBalanceURL($id);
 
 }

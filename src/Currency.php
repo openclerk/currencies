@@ -14,9 +14,16 @@ interface Currency {
 
   /**
    * Get the unique three-letter currency code for this currency,
-   * e.g. 'btc' or 'usd'. Must be lowercase.
+   * e.g. 'btc' or 'usd'. Must be lowercase. This is not visible to users.
    */
   public function getCode();
+
+  /**
+   * Get the currency code visible to users, which can be of any length
+   * and does not need to be unique (but should be). Often just the uppercase
+   * of {@link #getCode()}.
+   */
+  public function getAbbr();
 
   /**
    * Get the English name of this currency, e.g. "Bitcoin" or "United States Dollar".
