@@ -4,5 +4,8 @@
     "psr-4": {
       "Openclerk\\Currencies\\": "src"
     }
+  },
+  "require": {
+    "monolog/monolog": "~1.11"
   }
 }
