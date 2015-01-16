@@ -41,4 +41,12 @@ abstract class FiatCurrency implements Currency, CurrencyInformation {
     return strtoupper($this->getCode());
   }
 
+  /**
+   * By default, fiat currencies do not have any community links.
+   * @return an array of (url => title) community links, or an empty array if there are none
+   */
+  public function getCommunityLinks() {
+    return array();
+  }
+
 }
