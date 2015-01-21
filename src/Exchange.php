@@ -22,7 +22,7 @@ interface Exchange {
   public function getName();
 
   /**
-   * @return a unique string representing this exchange; must be lowercase
+   * @return a unique string representing this exchange; must be lowercase and 1-32 characters
    */
   public function getCode();
 
