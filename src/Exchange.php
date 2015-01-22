@@ -22,7 +22,7 @@ interface Exchange {
   public function getName();
 
   /**
-   * @return a unique string representing this exchange; must be lowercase
+   * @return a unique string representing this exchange; must be lowercase and 1-32 characters
    */
   public function getCode();
 
@@ -37,10 +37,14 @@ interface Exchange {
 
   /**
    * Fetch all rates for a given currency, returns an array of
-   * (last_trade, bid, ask, volume).
+   * (last_trade, bid, ask, volume, currency1, currency2) as keyed by
+   * the concatenation of the two currencies together (and therefore should
+   * be six characters long).
+   *
    * Some fields may not be present for a given exchange.
    * `volume` is the last 24h volume.
-   * May also return additional fields.
+   *
+   * May also return additional fields, e.g. high/low/vwap
    *
    * @return A list of rates for the currency pair
    * @throws ExchangeRateException if there are no rates for the given pair
