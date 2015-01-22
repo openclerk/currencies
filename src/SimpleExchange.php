@@ -22,8 +22,8 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
   public function fetchMarkets(Logger $logger) {
     $rates = $this->fetchAllRates($logger);
     $result = array();
-    foreach ($rates as $key => $ignored) {
-      $result[] = array(substr($key, 0, 3), substr($key, 3, 3));
+    foreach ($rates as $rate) {
+      $result[] = array($rate['currency1'], $rate['currency2']);
     }
     return $result;
   }
