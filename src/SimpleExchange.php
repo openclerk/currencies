@@ -3,6 +3,7 @@
 namespace Openclerk\Currencies;
 
 use \Monolog\Logger;
+use \Openclerk\Config;
 
 /**
  * Implements some basic implementations of an {@link Exchange}.
@@ -89,6 +90,26 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
     } else {
       return null;
     }
+  }
+
+  var $first_request = true;
+
+  /**
+   * This allows all exchanges to optionally throttle multiple repeated
+   * requests based on a runtime configuration value.
+   * The throttle time is selected from either the
+   * `exchanges_NAME_throttle` or `exchanges_throttle` config values,
+   * or three seconds;
+   * which is the time in seconds to wait between repeated requests.
+   */
+  public function throttle(Logger $logger) {
+    if (!$this->first_request) {
+      $seconds = Config::get("exchanges_" . $this->getCode() . "_throttle", Config::get("exchanges_throttle", 3 /* default */));
+      $logger->info("Throttling for " . $seconds . " seconds");
+      set_time_limit(30 + ($seconds * 2));
+      sleep($seconds);
+    }
+    $this->first_request = false;
   }
 
 }
