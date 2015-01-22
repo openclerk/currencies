@@ -53,7 +53,7 @@ interface Exchange {
 
   /**
    * Return a list of rates for each supported market, e.g.
-   * array('usdbtc' => array('last_trade' => 1, 'bid' => 2), ...)
+   * array(array('currency1' => 'usd', 'currency2' => 'btc', 'last_trade' => 1, 'bid' => 2), ...)
    *
    * @see #fetchRates($currency1, $currency2)
    */
