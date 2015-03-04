@@ -92,6 +92,21 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
     }
   }
 
+  /**
+   * Get the last trading price for the
+   * given pair (also known as the <i>last trade price</i>),
+   * or {@code null} if there is none.
+   */
+  public function fetchLastTrade($currency1, $currency2, Logger $logger) {
+    $rates = $this->fetchAllRates($logger);
+    $key = $currency1 . $currency2;
+    if (isset($rates[$key]['ask'])) {
+      return $rates[$key]['ask'];
+    } else {
+      return null;
+    }
+  }
+
   var $first_request = true;
 
   /**
