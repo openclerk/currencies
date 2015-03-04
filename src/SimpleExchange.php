@@ -40,12 +40,12 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
    */
   public function fetchRates($currency1, $currency2, Logger $logger) {
     $rates = $this->fetchAllRates($logger);
-    $key = $currency1 . $currency2;
-    if (isset($rates[$key])) {
-      return $rates[$key];
-    } else {
-      throw new ExchangeRateException("No $currency1/$currency2 rates found for '" . $this->getCode() . "' exchange");
+    foreach ($rates as $result) {
+      if ($result['currency1'] == $currency1 && $result['currency2'] == $currency2) {
+        return $result;
+      }
     }
+    throw new ExchangeRateException("No $currency1/$currency2 rates found for '" . $this->getCode() . "' exchange");
   }
 
   /**
@@ -54,12 +54,12 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
    */
   public function fetchLastTrade($currency1, $currency2, Logger $logger) {
     $rates = $this->fetchAllRates($logger);
-    $key = $currency1 . $currency2;
-    if (isset($rates[$key]['last_trade'])) {
-      return $rates[$key]['last_trade'];
-    } else {
-      return null;
+    foreach ($rates as $result) {
+      if ($result['currency1'] == $currency1 && $result['currency2'] == $currency2 && isset($result['last_trade'])) {
+        return $result['last_trade'];
+      }
     }
+    return null;
   }
 
   /**
@@ -69,12 +69,12 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
    */
   public function fetchBid($currency1, $currency2, Logger $logger) {
     $rates = $this->fetchAllRates($logger);
-    $key = $currency1 . $currency2;
-    if (isset($rates[$key]['bid'])) {
-      return $rates[$key]['bid'];
-    } else {
-      return null;
+    foreach ($rates as $result) {
+      if ($result['currency1'] == $currency1 && $result['currency2'] == $currency2 && isset($result['bid'])) {
+        return $result['bid'];
+      }
     }
+    return null;
   }
 
   /**
@@ -84,12 +84,12 @@ abstract class SimpleExchange implements Exchange, ExchangeInformation {
    */
   public function fetchAsk($currency1, $currency2, Logger $logger) {
     $rates = $this->fetchAllRates($logger);
-    $key = $currency1 . $currency2;
-    if (isset($rates[$key]['ask'])) {
-      return $rates[$key]['ask'];
-    } else {
-      return null;
+    foreach ($rates as $result) {
+      if ($result['currency1'] == $currency1 && $result['currency2'] == $currency2 && isset($result['ask'])) {
+        return $result['ask'];
+      }
     }
+    return null;
   }
 
   var $first_request = true;
