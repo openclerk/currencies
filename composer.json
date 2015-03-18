@@ -1,11 +1,16 @@
 {
   "name": "openclerk/currencies",
-  "autoload": {
+  "description": "Interface defintions of fiat, cryptocurrencies and commodity currencies",
+    "autoload": {
     "psr-4": {
-      "Openclerk\\Currencies\\": "src"
+      "Openclerk\\Currencies\\": "src",
+      "Openclerk\\Currencies\\Test": "test"
     }
   },
   "require": {
     "monolog/monolog": "~1.11"
+  },
+  "require-dev": {
+    "soundasleep/component-tests": "dev-master"
   }
 }
