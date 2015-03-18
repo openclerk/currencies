@@ -1,4 +1,4 @@
-openclerk/currencies
+openclerk/currencies [![Build Status](https://travis-ci.org/openclerk/currencies.svg)](https://travis-ci.org/openclerk/currencies)
 ====================
 
 A library for defining different types of currencies: cryptocurrencies, fiat currencies, and commodity currencies.
